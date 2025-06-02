@@ -45,9 +45,9 @@ jobs:
           AWS_REGION: ${{ secrets.AWS_REGION }}
         run: |
             if aws s3api head-bucket --bucket "ozedcloud-tfstate-bucket-001" 2>/dev/null; then
-              echo "exists=true" >> $GITHUB_ENV
+              echo "exists=true" >> $GITHUB_OUTPUT
             else
-              echo "exists=false" >> $GITHUB_ENV
+              echo "exists=false" >> $GITHUB_OUTPUT
             fi
       - name: Init & Apply Bootstrap
         if: steps.check_bucket.outputs.exists == 'false'
